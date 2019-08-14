@@ -30,7 +30,7 @@ class App extends Component {
                 let sortedAnimals;
                 if(animalHorns === 'horns') {
                     sortedAnimals = animals.sort((a, b) => a.horns - b.horns);
-                };
+                }
                 const updateProps = { animals: sortedAnimals };
                 imageList.update(updateProps);
             }
@@ -56,11 +56,10 @@ class App extends Component {
                 if(animalTitle === 'title') {
                     sortedAnimalTitle = animals.sort(function(a, b) {
                         return a.title.localeCompare(b.title);
-                    })
-                };
+                    });
+                }
                 const updateProps = { animals: sortedAnimalTitle };
                 imageList.update(updateProps);
-                console.log(sortedAnimalTitle)
             }
         };
         

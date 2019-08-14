@@ -10,8 +10,6 @@ class SortTitle extends Component {
     }
     
     renderHTML() {
-        const animals = this.props.animals;
-
         return /*html*/`
         <input id="title" name="sort" value="title" type="radio">
         `;
