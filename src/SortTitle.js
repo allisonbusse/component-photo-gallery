@@ -1,6 +1,6 @@
 import Component from './Component.js';
 
-class SortImages extends Component {
+class SortTitle extends Component {
     onRender(input) {
         const onSort = this.props.onSort;
 
@@ -13,9 +13,9 @@ class SortImages extends Component {
         const animals = this.props.animals;
 
         return /*html*/`
-        <input id="horns" name="sort" value="horns" type="radio">
+        <input id="title" name="sort" value="title" type="radio">
         `;
     }
 }
 
-export default SortImages;
+export default SortTitle;

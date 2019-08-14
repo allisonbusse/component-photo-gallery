@@ -1,16 +1,3 @@
-// import renderImage from './render-image.js';
-// import images from '../../data/images.js';
-// import htmlToDOM from '../src/utils/html-to-DOM.js';
-
-// const list = document.querySelector('.animals');
-
-// images.forEach(animal => {
-//     const html = renderImage(animal);
-
-//     const dom = htmlToDOM(html);
-
-//     list.appendChild(dom);
-// });
 import Component from './Component.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
@@ -18,6 +5,7 @@ import animals from '../data/images.js';
 import ImageList from './ImageList.js';
 import FilterImages from './FilterImages.js';
 import SortImages from './SortImages.js';
+import SortTitle from './SortTitle.js';
 
 class App extends Component {
     onRender(dom) {
@@ -41,12 +29,12 @@ class App extends Component {
             onSort: (animalHorns) => {
                 let sortedAnimals;
                 if(animalHorns === 'horns') {
-                    sortedAnimals = animals.horns.sort((a, b) => a - b);
-                }
-                return sortedAnimals;
+                    sortedAnimals = animals.sort((a, b) => a.horns - b.horns);
+                };
+                const updateProps = { animals: sortedAnimals };
+                imageList.update(updateProps);
             }
         };
-        console.log(animals[0].horns);
         
         const sortAnimals = new SortImages(sortAnimalProps);
         const sortAnimalsDOM = sortAnimals.renderDOM();
@@ -55,6 +43,37 @@ class App extends Component {
         sortSection.appendChild(sortAnimalsDOM);
         sortSection.classList.add('sort');
         buttons.appendChild(sortSection);
+        const label = document.createElement('label');
+        label.setAttribute('for', 'horns');
+        label.textContent = 'Number of Horns';
+        sortSection.prepend(label);
+
+        //sort by title
+        const sortAnimalTitleProps = {
+            animals: animals,
+            onSort: (animalTitle) => {
+                let sortedAnimalTitle;
+                if(animalTitle === 'title') {
+                    sortedAnimalTitle = animals.sort(function(a, b) {
+                        return a.title.localeCompare(b.title);
+                    })
+                };
+                const updateProps = { animals: sortedAnimalTitle };
+                imageList.update(updateProps);
+                console.log(sortedAnimalTitle)
+            }
+        };
+        
+        const sortAnimalTitle = new SortTitle(sortAnimalTitleProps);
+        const sortAnimalTitleDOM = sortAnimalTitle.renderDOM();
+        
+        sortSection.appendChild(sortAnimalTitleDOM);
+        sortSection.classList.add('sort');
+        buttons.appendChild(sortSection);
+        const label2 = document.createElement('label');
+        label2.setAttribute('for', 'title');
+        label2.textContent = 'Title';
+        sortSection.appendChild(label2);
         
 
         //Filter Section
