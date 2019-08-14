@@ -1,1 +1,1 @@
-# component-photo-gallery
+# photo-gallery
