@@ -11,13 +11,29 @@
 
 //     list.appendChild(dom);
 // });
+import Component from './Component.js';
 import Header from './Header.js';
 import Footer from './Footer.js';
-import images from '../data/images.js';
-
-import Component from './Component.js';
+import animals from '../data/images.js';
+import ImageList from './ImageList.js';
 
 class App extends Component {
+    onRender(dom) {
+        const header = new Header();
+        const headerDOM = header.renderDOM();
+        dom.prepend(headerDOM);
+
+        const props = {
+            animals: animals
+        };
+
+        const imageList = new ImageList(props);
+        const imageListDOM = imageList.renderDOM();
+
+        const photoCards = dom.querySelector('#photo-cards');
+        photoCards.appendChild(imageListDOM);
+    }
+    
     renderHTML() {
         return /*html*/`
             <div>
