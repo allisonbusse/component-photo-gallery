@@ -28,4 +28,12 @@ function getHorns(animals) {
     return horns;
 }
 
+function renderSortsHTML(horns) {
+    const optionsArray = horns.map(horns => {
+        animals.map(animal => animal.horn.sort());
+    });
+
+    return optionsArray.join('');
+}
+
 export default SortImages;

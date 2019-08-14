@@ -46,7 +46,8 @@ class App extends Component {
                 return sortedAnimals;
             }
         };
-
+        console.log(animals[0].horns);
+        
         const sortAnimals = new SortImages(sortAnimalProps);
         const sortAnimalsDOM = sortAnimals.renderDOM();
         const buttons = dom.querySelector('#buttons');
