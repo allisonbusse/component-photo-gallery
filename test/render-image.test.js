@@ -1,4 +1,4 @@
-import renderImage from '../configs/src/render-image.js';
+import renderImage from '../src/render-image.js';
 
 const test = QUnit.test;
 
