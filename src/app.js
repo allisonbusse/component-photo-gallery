@@ -17,6 +17,7 @@ import Footer from './Footer.js';
 import animals from '../data/images.js';
 import ImageList from './ImageList.js';
 import FilterImages from './FilterImages.js';
+import SortImages from './SortImages.js';
 
 class App extends Component {
     onRender(dom) {
@@ -34,6 +35,28 @@ class App extends Component {
         const photoCards = dom.querySelector('#photo-cards');
         photoCards.appendChild(imageListDOM);
 
+        //Sort Section
+        const sortAnimalProps = {
+            animals: animals,
+            onSort: (animalHorns) => {
+                let sortedAnimals;
+                if(animalHorns === 'horns') {
+                    sortedAnimals = animals.horns.sort((a, b) => a - b);
+                }
+                return sortedAnimals;
+            }
+        };
+
+        const sortAnimals = new SortImages(sortAnimalProps);
+        const sortAnimalsDOM = sortAnimals.renderDOM();
+        const buttons = dom.querySelector('#buttons');
+        const sortSection = dom.querySelector('#sort');
+        sortSection.appendChild(sortAnimalsDOM);
+        sortSection.classList.add('sort');
+        buttons.appendChild(sortSection);
+        
+
+        //Filter Section
         const filterAnimalProps = {
             animals: animals,
             onFilter: (animalKeyword) => {
@@ -57,6 +80,11 @@ class App extends Component {
 
         const filterSection = dom.querySelector('#filters');
         filterSection.appendChild(filterAnimalsDOM);
+        buttons.appendChild(sortSection);
+
+        const footer = new Footer();
+        const footerDOM = footer.renderDOM();
+        dom.appendChild(footerDOM);
     }
     
     renderHTML() {
@@ -64,8 +92,12 @@ class App extends Component {
             <div>
                     <!-- Header goes here -->
                 <main>
+                    <div id="buttons">
+                    <section id="sort">
+                    </section>
                     <section id="filters">
                     </section>
+                    </div>
                     <section id="photo-cards">
                     </section>
                 </main>

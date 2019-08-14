@@ -30,7 +30,7 @@ main {
     margin: 0 auto;
 }
 
-#filters {
+#buttons {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
